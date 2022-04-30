@@ -1,0 +1,31 @@
+﻿@page "/LearnBlazor/BindProp"
+@using Tangy_Models.LearnBlazorModels;
+
+<h3>Product</h3>
+
+<ul class="list-group">
+	<li class="list-group-item d-flex justify-content-between align-items-center">
+		<p class="lead">Name : @product.Name</p>
+	</li>
+	<li class="list-group-item d-flex justify-content-between align-items-center">
+		<p class="lead">Id : @product.Id.ToString()</p>
+	</li>
+	<li class="list-group-item d-flex justify-content-between align-items-center">
+		<p class="lead">IsActive:@product.IsActive.ToString()</p>
+	</li>
+	<li class="list-group-item d-flex justify-content-between align-items-center">
+		<p class="lead">@product.Price.ToString()</p>
+	</li>
+</ul>
+
+<input type="number" name="" id="" @bind-value="@product.Price" @bind-value:event="oninput">
+
+@code {
+	Demo_Product product = new()
+	{
+		Id=1,
+		Name="Rose Candle",
+		IsActive=true,
+		Price=10.99
+	};
+}
