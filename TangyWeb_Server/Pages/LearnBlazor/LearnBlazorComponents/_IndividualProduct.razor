@@ -1,0 +1,28 @@
+﻿<h4 class="text-secondary">Product - @Product.Id</h4>
+
+<p><input type="checkbox" name="" id="" @onchange="FavouriteUpdated"> - Add to favourites</p>
+<br>
+<br>
+<p>Name - @Product.Name</p>
+<p>Show Properties : <input type="checkbox" name="" id="" @bind-value="Product.IsActive" checked="@(Product.IsActive ? "checked" : null)"></p>
+
+@if(Product.IsActive)
+{
+    @foreach (var prodProp in Product.ProductProperties)
+    {
+        <p>@prodProp.Key - @prodProp.Value</p>
+    }
+}
+
+@code {
+    [Parameter]
+    public Demo_Product Product { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnFavouriteUpdated{ get; set; }
+
+    private async Task FavouriteUpdated(ChangeEventArgs e)
+    {
+        await OnFavouriteUpdated.InvokeAsync((bool)e.Value);
+    }
+}

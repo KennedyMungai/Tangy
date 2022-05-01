@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TangyWeb_Server", "TangyWeb_Server\TangyWeb_Server.csproj", "{B9F21BE8-5551-4048-8FC6-ED88AC270AD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TangyWeb_Server", "TangyWeb_Server\TangyWeb_Server.csproj", "{B9F21BE8-5551-4048-8FC6-ED88AC270AD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TangyWeb_Client", "TangyWeb_Client\TangyWeb_Client.csproj", "{4B9CA28D-E6C0-4655-B7E8-EE09001F2B56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TangyWeb_Client", "TangyWeb_Client\TangyWeb_Client.csproj", "{4B9CA28D-E6C0-4655-B7E8-EE09001F2B56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tangy_Models", "Tangy_Models\Tangy_Models.csproj", "{04756AB2-567D-4C76-83B9-E256D8EF2FD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tangy_Models", "Tangy_Models\Tangy_Models.csproj", "{04756AB2-567D-4C76-83B9-E256D8EF2FD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,46 +1,81 @@
 ﻿@page "/LearnBlazor/BindProp"
+@using Tangy_Models.LearnBlazorModels;
 
-<h3 class="text-primary">Product Summary</h3>
-<hr />
+<h2 class="display-2 text-center text-success border">Individual Products</h2>
+<hr>
+	<div class="row">
+		<div class="col-6">
+			<h3 class="text-primary">Product Summary</h3>
+		<hr />
+		<ul class="list-group">
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				<p class="lead">Name : @product.Name</p>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				<p class="lead">Id : @product.Id.ToString()</p>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				<p class="lead">IsActive:@product.IsActive.ToString()</p>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				<p class="lead">@product.Price.ToString()</p>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				<p class="lead">This product is @(product.IsActive ? "Active" : "Inactive")</p>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				<p class="lead">@selectedProp</p>
+				@if (!string.IsNullOrWhiteSpace(selectedProp))
+				{
+					<p>Property Value: @product.ProductProperties.FirstOrDefault(u => u.Key == selectedProp).Value</p>
+				}
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-center">
+				<p class="lead">Product Properties</p>
+				<select name="" id="" @bind="selectedProp">
+					@foreach (var prop in product?.ProductProperties)
+					{
+						<option value="@prop.Key">@prop.Key</option>
+					}
+				</select>
+			</li>
+		</ul>
+		</div>
+		<div class="col-6">
+		<p>
+			<label for="IsActive">Is Active</label>
+			<input type="checkbox" name="" id=""  @bind-value="@product.IsActive" @bind-value:event="oninput" checked="@(product.IsActive?"checked":null)">
+		</p>
+		<p>
+			<label for="Price">Product Price</label>
+			<input type="number" name="" id="" @bind-value="@product.Price" @bind-value:event="oninput">
+		</p>
+	</div>
 
-<ul class="list-group">
-	<li class="list-group-item d-flex justify-content-between align-items-center">
-		<p class="lead">Name : @product.Name</p>
-	</li>
-	<li class="list-group-item d-flex justify-content-between align-items-center">
-		<p class="lead">Id : @product.Id.ToString()</p>
-	</li>
-	<li class="list-group-item d-flex justify-content-between align-items-center">
-		<p class="lead">IsActive:@product.IsActive.ToString()</p>
-	</li>
-	<li class="list-group-item d-flex justify-content-between align-items-center">
-		<p class="lead">@product.Price.ToString()</p>
-	</li>
-	<li class="list-group-item d-flex justify-content-between align-items-center">
-		<p class="lead">This product is @(product.IsActive ? "Active" : "Inactive")</p>
-	</li>
-	<li class="list-group-item d-flex justify-content-between align-items-center">
-		<p class="lead">@selectedProp</p>
-		@if (!string.IsNullOrWhiteSpace(selectedProp))
-		{
-			<p>Property Value: @product.ProductProperties.FirstOrDefault(u => u.Key == selectedProp).Value</p>
-		}
-	</li>
-	<li class="list-group-item d-flex justify-content-between align-items-center">
-		<p class="lead">Product Properties</p>
-		<select name="" id="" @bind="selectedProp">
-			@foreach (var prop in product?.ProductProperties)
-			{
-				<option value="@prop.Key">@prop.Key</option>
-			}
-		</select>
-	</li>
-</ul>
+	<div class="row my-4">
+		<h3 class="text-primary">Product Table</h3>
+		<hr>
+	</div>
+	<div class="row">
+		<div class="col-4">
+			<input type="text" name="" id="" @bind-value="@product.Name" @bind-value:event="oninput">
+		</div>
+		<div class="col-4">
+			<input type="number" name="" id="" @bind-value="@product.Price" @bind-value:event="oninput">
+		</div>
+		<div class="col-4">
+			<input type="checkbox" name="" id="" @bind-value="@product.IsActive" @bind-value:event="oninput">
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<h3>Product Summary</h3>
+	</div>
+	<div class="row">
+		<p>@product.Name costs @product.Price.ToString() and is @(product.IsActive ? "active" : "not active")</p>
+	</div>
+</div>
 
-<br>
-<input type="checkbox" name="" id=""  @bind-value="@product.IsActive" @bind-value:event="oninput" checked="@(product.IsActive?"checked":null)">
-<br>
-<input type="number" name="" id="" @bind-value="@product.Price" @bind-value:event="oninput">
 
 @code {
 	private string selectedProp = string.Empty;
@@ -72,23 +107,25 @@
                 Price=10.99,
                 ProductProperties = new()
                 {
-                new Demo_ProductProp { Id = 1, Key = "Flavor", Value = "Rose"},
-                     new Demo_ProductProp { Id = 2, Key = "Size", Value = "20oz"},
+                	new Demo_ProductProp { Id = 1, Key = "Flavor", Value = "Rose"},
+					new Demo_ProductProp { Id = 2, Key = "Size", Value = "20oz"},
                     new Demo_ProductProp { Id = 3, Key = "Color", Value="Purple" }
                 }
             });
 
-        Products.Add(new()
+		Products.Add(new()
         {
             Id = 2,
             Name = "Blossom Lily",
             IsActive = true,
             Price=13.99,
             ProductProperties = new()
-            {
-                new Demo_ProductProp { Id = 1, Key = "Flavor", Value = "Lily" },
-                new Demo_ProductProp { Id = 2, Key = "Size", Value = "18oz" },
-                new Demo_ProductProp {Id = 3,Key = "Color",Value = "White"}
-            }
+			{
+				new Demo_ProductProp { Id = 1, Key = "Flavor", Value = "Lily" },
+				new Demo_ProductProp { Id = 2, Key = "Size", Value = "18oz" },
+				new Demo_ProductProp { Id = 3, Key = "Color", Value = "White" }
+			}
+			});
+		}
 	}
 }
