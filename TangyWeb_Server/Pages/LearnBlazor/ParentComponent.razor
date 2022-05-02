@@ -3,11 +3,13 @@
 <h3>Parent Child Relation</h3>
 
 <_ChildComponent OnButtonClick="ShowMessage" title="This title is passed as a parameter from the parent component">
-    This part is called a render fragment
+    <ChildContent>Render Fragment from the Parent</ChildContent>
+    <DangerChildContent>Danger Content from the render fragment</DangerChildContent>
 </_ChildComponent>
 
 <p><b>@messageText</b></p>
 
+<_AnotherChildComponent Placeholder="Enter your name again" Required="" MaxLength="5"></_AnotherChildComponent>
 <_ChildComponent title="This his the second child component">
 </_ChildComponent>
 

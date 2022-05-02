@@ -12,7 +12,10 @@
             @foreach (var prod in Products)
             {
                 <div class="bg-light p-1 col-5 border">
-                    <_IndividualProduct Product="prod" OnFavouriteUpdated="FavouriteCountUpdate" OnLastSelectedProductChange="SelectedProductUpdate"></_IndividualProduct>
+                    <_IndividualProduct Product="prod" OnFavouriteUpdated="FavouriteCountUpdate" OnLastSelectedProductChange="SelectedProductUpdate">
+                        <FirstFragment>#1</FirstFragment>
+                        <SecondFragment>#2</SecondFragment>
+                    </_IndividualProduct>
                     <br>
                     
                     <_EditDeleteButton IsActive="@prod.IsActive">

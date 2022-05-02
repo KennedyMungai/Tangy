@@ -5,6 +5,7 @@
     <br>
     <br>
     <p>Name - @Product.Name</p>
+    <p>R from Parent - @FirstFragment @SecondFragment</p>
     <p>Show Properties : <input type="checkbox" name="" id="" @bind-value="Product.IsActive" checked="@(Product.IsActive ? "checked" : null)"></p>
 
     @if(Product.IsActive)
@@ -26,7 +27,13 @@
 
     [Parameter]
     public EventCallback<string> OnLastSelectedProductChange { get; set; }
-
+    
+    [Parameter]
+    public RenderFragment FirstFragment { get; set; }
+    
+    [Parameter]
+    public RenderFragment SecondFragment { get; set; }
+    
     private async Task FavouriteUpdated(ChangeEventArgs e)
     {
         await OnFavouriteUpdated.InvokeAsync((bool)e.Value);
