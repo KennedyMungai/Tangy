@@ -4,7 +4,7 @@
 
 <CascadingValue Value="@MessageForGrandChild" Name="Message">
     <CascadingValue Value="@LuckyNumber" Name="LuckyNumber">
-        <_ChildComponent OnButtonClick="ShowMessage" title="This title is passed as a parameter from the parent component" >
+        <_ChildComponent @ref="childComp" OnButtonClick="ShowMessage" title="This title is passed as a parameter from the parent component" >
             <ChildContent>Render Fragment from the Parent</ChildContent>
             <DangerChildContent>Danger Content from the render fragment</DangerChildContent>
         </_ChildComponent>
@@ -15,11 +15,17 @@
 
 <p><b>@messageText</b></p>
 
+<div class="row">
+    <button class="btn btn-success" @onclick="() => childComp.ToastrSuccess()">Show Sweet Alerts</button>
+</div>
+
 <_AnotherChildComponent Placeholder="Placeholder from parent"></_AnotherChildComponent>
 <_ChildComponent title="This his the second child component">
 </_ChildComponent>
 
 @code {
+    private _ChildComponent childComp;
+
     [Parameter]
     public string MessageForGrandChild = "This message is from your grandparent (_Parent)";
 
