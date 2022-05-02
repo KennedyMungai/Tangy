@@ -2,18 +2,38 @@
 
 <h3>Parent Child Relation</h3>
 
-<_ChildComponent OnButtonClick="ShowMessage" title="This title is passed as a parameter from the parent component">
-    <ChildContent>Render Fragment from the Parent</ChildContent>
-    <DangerChildContent>Danger Content from the render fragment</DangerChildContent>
-</_ChildComponent>
+<CascadingValue Value="@MessageForGrandChild" Name="Message">
+    <CascadingValue Value="@LuckyNumber" Name="LuckyNumber">
+        <_ChildComponent OnButtonClick="ShowMessage" title="This title is passed as a parameter from the parent component" >
+            <ChildContent>Render Fragment from the Parent</ChildContent>
+            <DangerChildContent>Danger Content from the render fragment</DangerChildContent>
+        </_ChildComponent>
+    </CascadingValue>
+</CascadingValue>
+    
+
 
 <p><b>@messageText</b></p>
 
-<_AnotherChildComponent Placeholder="Enter your name again" Required="" MaxLength="5"></_AnotherChildComponent>
+<_AnotherChildComponent Placeholder="Placeholder from parent"></_AnotherChildComponent>
 <_ChildComponent title="This his the second child component">
 </_ChildComponent>
 
 @code {
+    [Parameter]
+    public string MessageForGrandChild = "This message is from your grandparent (_Parent)";
+
+    [Parameter]
+    public int LuckyNumber = 7;
+
+    [Parameter]
+    public Dictionary<string, object> InputAttributesFromParent {get; set;} = new Dictionary<string, Object>()
+    {
+        {"required","required"},
+        {"placeholder","Enter name from parent"},
+        {"maxlength",5}
+    };
+
     public string messageText { get; set; } = string.Empty;
     
     private void ShowMessage()
